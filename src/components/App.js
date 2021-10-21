@@ -1,6 +1,6 @@
 function App() {
   return (
-    <div className="root">
+    <div>
       <header className="header">
         <a href="#" className="header__logo" aria-label="Перейти на главную"></a>
       </header>
@@ -41,15 +41,15 @@ function App() {
       <div className="popup" id="popup-edit-profile">
         <div className="popup__container">
           <button className="popup__close button" type="button" aria-label="Закрыть"></button>
-          <form className="form" action="post" name="form-edit-profile" novalidate>
+          <form className="form" action="post" name="form-edit-profile" noValidate>
             <h2 className="form__title">Редактировать профиль</h2>
             <fieldset className="form__fields">
               <label className="form__field">
-                <input className="form__input" type="text" name="name" placeholder="Имя героя" required minlength="2" maxlength="40"/>
+                <input className="form__input" type="text" name="name" placeholder="Имя героя" required minLength="2" maxLength="40"/>
                 <span className="form__input-error" data-input-name="name"></span>
               </label>
               <label className="form__field">
-                <input className="form__input" type="text" name="about" placeholder="Позиция героя в мире" required minlength="2" maxlength="200"/>
+                <input className="form__input" type="text" name="about" placeholder="Позиция героя в мире" required minLength="2" maxLength="200"/>
                 <span className="form__input-error" data-input-name="about"></span>
               </label>
             </fieldset>
@@ -61,11 +61,11 @@ function App() {
       <div className="popup" id="popup-add-place">
         <div className="popup__container">
           <button className="popup__close button" type="button" aria-label="Закрыть"></button>
-          <form className="form" action="post" name="form-add-place" novalidate>
+          <form className="form" action="post" name="form-add-place" noValidate>
             <h2 className="form__title">Новое место</h2>
             <fieldset className="form__fields">
               <label className="form__field">
-                <input className="form__input" type="text" name="name" placeholder="Название" required minlength="2" maxlength="30"/>
+                <input className="form__input" type="text" name="name" placeholder="Название" required minLength="2" maxLength="30"/>
                 <span className="form__input-error" data-input-name="name"></span>
               </label>
               <label className="form__field">
@@ -91,7 +91,7 @@ function App() {
       <div className="popup" id="popup-accept">
         <div className="popup__container">
           <button className="popup__close button" type="button" aria-label="Закрыть"></button>
-          <form className="form" action="post" name="form-accept" novalidate>
+          <form className="form" action="post" name="form-accept" noValidate>
             <h2 className="form__title">Вы уверены?</h2>
             <button className="form__submit button" type="submit">Да</button>
           </form>
@@ -101,7 +101,7 @@ function App() {
       <div className="popup" id="popup-edit-avatar">
         <div className="popup__container">
           <button className="popup__close button" type="button" aria-label="Закрыть"></button>
-          <form className="form" action="post" name="form-edit-avatar" novalidate>
+          <form className="form" action="post" name="form-edit-avatar" noValidate>
             <h2 className="form__title">Обновить аватар</h2>
             <fieldset className="form__fields">
               <label className="form__field">
