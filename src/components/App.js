@@ -1,9 +1,6 @@
-import logo from './logo.svg';
-import './App.css';
-
 function App() {
   return (
-    <div className="App">
+    <div className="root">
       <header className="header">
         <a href="#" className="header__logo" aria-label="Перейти на главную"></a>
       </header>
@@ -25,11 +22,11 @@ function App() {
             <template id="place">
               <li className="place">
                 <img className="place__image" src="https://svgsilh.com/svg/1363011.svg" alt="Изображение"/>
-                <h2 class ="place__caption">Название</h2>
-                <button class ="place__delete button" type ="button" aria-label="Удалить" title="Удалить"></button>
-                <div class ="place__like-container">
-                <button class ="place__like button" type ="button" aria-label="Нравится" title="Нравится"></button>
-                <p class ="place__like-counter">0</p>
+                <h2 className="place__caption">Название</h2>
+                <button className="place__delete button" type ="button" aria-label="Удалить" title="Удалить"></button>
+                <div className="place__like-container">
+                <button className="place__like button" type ="button" aria-label="Нравится" title="Нравится"></button>
+                <p className="place__like-counter">0</p>
                 </div>
               </li>
             </template>
@@ -49,11 +46,11 @@ function App() {
             <fieldset className="form__fields">
               <label className="form__field">
                 <input className="form__input" type="text" name="name" placeholder="Имя героя" required minlength="2" maxlength="40"/>
-                <span class ="form__input-error" data-input-name="name"></span>
+                <span className="form__input-error" data-input-name="name"></span>
               </label>
               <label className="form__field">
                 <input className="form__input" type="text" name="about" placeholder="Позиция героя в мире" required minlength="2" maxlength="200"/>
-                <span class ="form__input-error" data-input-name="about"></span>
+                <span className="form__input-error" data-input-name="about"></span>
               </label>
             </fieldset>
             <button className="form__submit button" type="submit" data-waiting-text="Сохренение...">Сохранить</button>
@@ -69,11 +66,11 @@ function App() {
             <fieldset className="form__fields">
               <label className="form__field">
                 <input className="form__input" type="text" name="name" placeholder="Название" required minlength="2" maxlength="30"/>
-                <span class ="form__input-error" data-input-name="name"></span>
+                <span className="form__input-error" data-input-name="name"></span>
               </label>
               <label className="form__field">
                 <input className="form__input" type="url" name="link" placeholder="Ссылка на картинку" required/>
-                <span class ="form__input-error" data-input-name="link"></span>
+                <span className="form__input-error" data-input-name="link"></span>
               </label>
             </fieldset>
             <button className="form__submit button" type="submit" data-waiting-text="Создание...">Создать</button>
@@ -86,7 +83,7 @@ function App() {
           <button className="popup__close button" type="button" aria-label="Закрыть"></button>
           <figure className="figure">
             <img className="figure__image" src="./images/yandex-praktikum.svg" alt="Логотип Яндекс.Практикум"/>
-            <figcaption class ="figure__caption">Яндекс.Практикум</figcaption>
+            <figcaption className="figure__caption">Яндекс.Практикум</figcaption>
           </figure>
         </div>
       </div>
@@ -109,7 +106,7 @@ function App() {
             <fieldset className="form__fields">
               <label className="form__field">
                 <input className="form__input" type="url" name="link" placeholder="Ссылка на картинку" required/>
-                <span class ="form__input-error" data-input-name="link"></span>
+                <span className="form__input-error" data-input-name="link"></span>
               </label>
             </fieldset>
             <button className="form__submit button" type="submit" data-waiting-text="Сохренение...">Сохранить</button>
