@@ -1,6 +1,6 @@
 function App() {
   return (
-    <div>
+    <div className="wrapper">
       <header className="header">
         <a href="#" className="header__logo" aria-label="Перейти на главную"></a>
       </header>
