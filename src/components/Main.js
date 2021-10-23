@@ -1,20 +1,32 @@
 import api from "../utils/api";
 import React from "react";
 
+import Card from "./Card";
+
 import initialUserAvatar from "../images/avatar.webp";
 
 function Main(props) {
 
+  //Данные профиля
   const [userName, setUserName] = React.useState('Коля Широков');
   const [userDescription, setUserDescription] = React.useState('Студент');
   const [userAvatar, setUserAvatar] = React.useState(initialUserAvatar);
 
+  //Карточки
+  const [cards, setCards] = React.useState([]);
+
+  //Разовые действия при монтированнии/демонтировании компонента
   React.useEffect(() => {
+    // Загрузка данных профиля с сервера
     api.getUserInfo().then(data => {
       setUserName(data.name);
       setUserDescription(data.about);
       setUserAvatar(data.avatar);
-    })
+    });
+    // Загрузка коллекции карточек с сервера
+    api.getInitialCards().then(data => {
+      setCards(data);
+    });
   }, []);
 
   return (
@@ -32,17 +44,7 @@ function Main(props) {
       </section>
       <section className="root__places">
         <ul className="places">
-          <template id="place">
-            <li className="place">
-              <img className="place__image" src="https://svgsilh.com/svg/1363011.svg" alt="Изображение" />
-              <h2 className="place__caption">Название</h2>
-              <button className="place__delete button" type="button" aria-label="Удалить" title="Удалить"></button>
-              <div className="place__like-container">
-                <button className="place__like button" type="button" aria-label="Нравится" title="Нравится"></button>
-                <p className="place__like-counter">0</p>
-              </div>
-            </li>
-          </template>
+          {cards.map(card => <Card key={card._id} {...card} />)}
         </ul>
       </section>
     </main>
