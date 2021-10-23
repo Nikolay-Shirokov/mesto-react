@@ -1,9 +1,9 @@
+import Header from "./Header";
+
 function App() {
   return (
     <div className="wrapper">
-      <header className="header">
-        <a href="#" className="header__logo" aria-label="Перейти на главную"></a>
-      </header>
+      <Header />
 
       <main className="root__content">
         <section className="profile root__profile">
