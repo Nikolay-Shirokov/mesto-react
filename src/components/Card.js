@@ -1,6 +1,11 @@
 function Card(props) {
+
+  function handleClick() {
+    props.onCardClick(props);
+  }
+
   return (
-    <li className="place">
+    <li className="place" onClick={handleClick}>
       <img className="place__image" src={props.link} alt={props.name} />
       <h2 className="place__caption">{props.name}</h2>
       <button className="place__delete button" type="button" aria-label="Удалить" title="Удалить"></button>

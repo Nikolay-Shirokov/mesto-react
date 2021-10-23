@@ -9,9 +9,11 @@ import React from "react";
 
 function App() {
 
-  const [ isEditAvatarPopupOpen,  setEditAvatarPopupOpen ] = React.useState(false);
-  const [ isAddPlacePopupOpen,    setAddPlacePopupOpen ]   = React.useState(false);
-  const [ isEditProfilePopupOpen, setEditProfilePopupOpen ] = React.useState(false);
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
+
+  const [selectedCard, setSelectedCard] = React.useState({});
 
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
@@ -26,19 +28,35 @@ function App() {
   }
 
   function closeAllPopups(event) {
+
     if (!(event.target === event.currentTarget || event.target.classList.contains('popup__close'))) {
       return;
     };
+
     setEditAvatarPopupOpen(false);
     setAddPlacePopupOpen(false);
     setEditProfilePopupOpen(false);
+
+    setSelectedCard({});
+
+  }
+
+  function handleCardClick(card) {
+    setSelectedCard(card);
   }
 
   return (
     <div className="wrapper">
 
       <Header />
-      <Main onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} />
+
+      <Main
+        onEditAvatar={handleEditAvatarClick}
+        onEditProfile={handleEditProfileClick}
+        onAddPlace={handleAddPlaceClick}
+        onCardClick={handleCardClick}
+      />
+
       <Footer />
 
       <PopupWithForm
@@ -106,7 +124,10 @@ function App() {
         buttonText="Да"
       />
 
-      <ImagePopup />
+      <ImagePopup
+        card={selectedCard}
+        onClose={closeAllPopups}
+      />
 
     </div>
   );
