@@ -1,11 +1,13 @@
 import api from "../utils/api";
 import React from "react";
 
+import initialUserAvatar from "../images/avatar.webp";
+
 function Main(props) {
 
-  const [userName, setUserName] = React.useState(false);
-  const [userDescription, setUserDescription] = React.useState(false);
-  const [userAvatar, setUserAvatar] = React.useState('../images/avatar.webp');
+  const [userName, setUserName] = React.useState('Коля Широков');
+  const [userDescription, setUserDescription] = React.useState('Студент');
+  const [userAvatar, setUserAvatar] = React.useState(initialUserAvatar);
 
   React.useEffect(() => {
     api.getUserInfo().then(data => {
