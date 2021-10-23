@@ -25,6 +25,15 @@ function App() {
     setEditProfilePopupOpen(true);
   }
 
+  function closeAllPopups(event) {
+    if (!(event.target === event.currentTarget || event.target.classList.contains('popup__close'))) {
+      return;
+    };
+    setEditAvatarPopupOpen(false);
+    setAddPlacePopupOpen(false);
+    setEditProfilePopupOpen(false);
+  }
+
   return (
     <div className="wrapper">
 
@@ -36,6 +45,7 @@ function App() {
         title="Редактировать профиль"
         name="edit-profile"
         isOpen={isEditProfilePopupOpen}
+        onClose={closeAllPopups}
         fieldset={(
           <fieldset className="form__fields">
             <label className="form__field">
@@ -56,6 +66,7 @@ function App() {
         title="Новое место"
         name="add-place"
         isOpen={isAddPlacePopupOpen}
+        onClose={closeAllPopups}
         fieldset={(
           <fieldset className="form__fields">
             <label className="form__field">
@@ -76,6 +87,7 @@ function App() {
         title="Обновить аватар"
         name="edit-avatar"
         isOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}
         fieldset={(
           <fieldset className="form__fields">
             <label className="form__field">
