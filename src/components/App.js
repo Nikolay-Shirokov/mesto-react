@@ -5,17 +5,37 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 
+import React from "react";
+
 function App() {
+
+  const [ isEditAvatarPopupOpen,  setEditAvatarPopupOpen ] = React.useState(false);
+  const [ isAddPlacePopupOpen,    setAddPlacePopupOpen ]   = React.useState(false);
+  const [ isEditProfilePopupOpen, setEditProfilePopupOpen ] = React.useState(false);
+
+  function handleEditAvatarClick() {
+    setEditAvatarPopupOpen(true);
+  }
+
+  function handleEditProfileClick() {
+    setAddPlacePopupOpen(true);
+  }
+
+  function handleAddPlaceClick() {
+    setEditProfilePopupOpen(true);
+  }
+
   return (
     <div className="wrapper">
 
       <Header />
-      <Main />
+      <Main onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} />
       <Footer />
 
       <PopupWithForm
         title="Редактировать профиль"
         name="edit-profile"
+        isOpen={isEditProfilePopupOpen}
         fieldset={(
           <fieldset className="form__fields">
             <label className="form__field">
@@ -35,6 +55,7 @@ function App() {
       <PopupWithForm
         title="Новое место"
         name="add-place"
+        isOpen={isAddPlacePopupOpen}
         fieldset={(
           <fieldset className="form__fields">
             <label className="form__field">
@@ -52,14 +73,9 @@ function App() {
       />
 
       <PopupWithForm
-        title="Вы уверены?"
-        name="accept"
-        buttonText="Да"
-      />
-
-      <PopupWithForm
         title="Обновить аватар"
         name="edit-avatar"
+        isOpen={isEditAvatarPopupOpen}
         fieldset={(
           <fieldset className="form__fields">
             <label className="form__field">
@@ -70,6 +86,12 @@ function App() {
         )}
         buttonText="Сохранить"
         buttonWaitingText="Сохренение..."
+      />
+
+      <PopupWithForm
+        title="Вы уверены?"
+        name="accept"
+        buttonText="Да"
       />
 
       <ImagePopup />

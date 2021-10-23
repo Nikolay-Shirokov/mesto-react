@@ -1,6 +1,6 @@
 function PopupWithForm(props) {
   return (
-    <div className="popup" id={`popup-${props.name}`}>
+    <div className={`popup ${props.isOpen?"popup_opened":""}`} id={`popup-${props.name}`}>
       <div className="popup__container">
         <button className="popup__close button" type="button" aria-label="Закрыть"></button>
         <form className="form" action="post" name={`form-${props.name}`} noValidate>
