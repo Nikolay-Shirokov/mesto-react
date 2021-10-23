@@ -1,5 +1,6 @@
 import Header from "./Header";
 import Main from "./Main";
+import Footer from "./Footer";
 
 function App() {
   return (
@@ -8,9 +9,7 @@ function App() {
 
       <Main />
 
-      <footer className="footer root__footer">
-        <p className="footer__copyright">&copy; 2021 Николай Широков</p>
-      </footer>
+      <Footer />
 
       <div className="popup" id="popup-edit-profile">
         <div className="popup__container">
