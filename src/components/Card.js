@@ -5,8 +5,8 @@ function Card(props) {
   }
 
   return (
-    <li className="place" onClick={handleClick}>
-      <img className="place__image" src={props.link} alt={props.name} />
+    <li className="place">
+      <img className="place__image" src={props.link} alt={props.name} onClick={handleClick} />
       <h2 className="place__caption">{props.name}</h2>
       <button className="place__delete button" type="button" aria-label="Удалить" title="Удалить"></button>
       <div className="place__like-container">
