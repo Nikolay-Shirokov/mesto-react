@@ -1,6 +1,6 @@
 function ImagePopup(props) {
   return (
-    <div className={`popup ${props.card.link?"popup_opened":""}`} onClick={props.onClose}>
+    <div className={`popup ${props.isOpen?"popup_opened":""}`} onClick={props.onClose}>
       <div className="popup__container">
         <button className="popup__close button" type="button" aria-label="Закрыть"></button>
         <figure className="figure">
