@@ -1,4 +1,5 @@
 import api from "../utils/api";
+import { handleError } from "../utils/utils";
 import React from "react";
 
 import Card from "./Card";
@@ -17,16 +18,23 @@ function Main(props) {
 
   //Разовые действия при монтированнии/демонтировании компонента
   React.useEffect(() => {
+
     // Загрузка данных профиля с сервера
-    api.getUserInfo().then(data => {
-      setUserName(data.name);
-      setUserDescription(data.about);
-      setUserAvatar(data.avatar);
-    });
+    api.getUserInfo()
+      .then(data => {
+        setUserName(data.name);
+        setUserDescription(data.about);
+        setUserAvatar(data.avatar);
+      })
+      .catch(handleError);
+
     // Загрузка коллекции карточек с сервера
-    api.getInitialCards().then(data => {
-      setCards(data);
-    });
+    api.getInitialCards()
+      .then(data => {
+        setCards(data);
+      })
+      .catch(handleError);
+
   }, []);
 
   return (
