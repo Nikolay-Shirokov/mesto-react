@@ -1,6 +1,6 @@
 import api from "../utils/api";
 import { handleError } from "../utils/utils";
-import React from "react";
+import {useState, useEffect} from "react";
 
 import Card from "./Card";
 
@@ -9,15 +9,15 @@ import initialUserAvatar from "../images/avatar.webp";
 function Main(props) {
 
   //Данные профиля
-  const [userName, setUserName] = React.useState('Инкогнито');
-  const [userDescription, setUserDescription] = React.useState('Неизвестный посетитель');
-  const [userAvatar, setUserAvatar] = React.useState(initialUserAvatar);
+  const [userName, setUserName] = useState('Инкогнито');
+  const [userDescription, setUserDescription] = useState('Неизвестный посетитель');
+  const [userAvatar, setUserAvatar] = useState(initialUserAvatar);
 
   //Карточки
-  const [cards, setCards] = React.useState([]);
+  const [cards, setCards] = useState([]);
 
   //Разовые действия при монтированнии/демонтировании компонента
-  React.useEffect(() => {
+  useEffect(() => {
 
     // Загрузка данных профиля с сервера
     api.getUserInfo()
