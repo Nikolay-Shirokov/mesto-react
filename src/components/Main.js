@@ -9,8 +9,8 @@ import initialUserAvatar from "../images/avatar.webp";
 function Main(props) {
 
   //Данные профиля
-  const [userName, setUserName] = React.useState('Коля Широков');
-  const [userDescription, setUserDescription] = React.useState('Студент');
+  const [userName, setUserName] = React.useState('Инкогнито');
+  const [userDescription, setUserDescription] = React.useState('Неизвестный посетитель');
   const [userAvatar, setUserAvatar] = React.useState(initialUserAvatar);
 
   //Карточки
