@@ -11,6 +11,7 @@ import api from "../utils/api";
 
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
 
 function App() {
 
@@ -73,6 +74,15 @@ function App() {
       .catch(handleError)
   }
 
+  function handleUpdateAvatar(newLink) {
+    api.patchAvatar(newLink)
+    .then(res => {
+      setCurrentUser(res);
+      setEditAvatarPopupOpen(false);
+    })
+    .catch(handleError)
+  }
+
   return (
     <div className="wrapper">
 
@@ -116,21 +126,10 @@ function App() {
           buttonWaitingText="Создание..."
         />
 
-        <PopupWithForm
-          title="Обновить аватар"
-          name="edit-avatar"
+        <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
-          fieldset={(
-            <fieldset className="form__fields">
-              <label className="form__field">
-                <input className="form__input" type="url" name="link" placeholder="Ссылка на картинку" required />
-                <span className="form__input-error" data-input-name="link"></span>
-              </label>
-            </fieldset>
-          )}
-          buttonText="Сохранить"
-          buttonWaitingText="Сохренение..."
+          onUpdateAvatar={handleUpdateAvatar}
         />
 
         <PopupWithForm
