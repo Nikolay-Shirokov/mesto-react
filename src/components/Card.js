@@ -15,13 +15,17 @@ function Card(card) {
     card.onCardClick(card);
   }
 
+  function handleLikeClick() {
+    card.onCardLike(card, isLiked);
+  }
+
   return (
     <li className="place">
       <img className="place__image" src={card.link} alt={card.name} title={`Добавил ${card.owner.name}`} onClick={handleClick} />
       <h2 className="place__caption">{card.name}</h2>
       {isOwn? <button className="place__delete button" type="button" aria-label="Удалить" title="Удалить"></button>: ''}
       <div className="place__like-container">
-        <button className={`place__like ${isLiked? 'place__like_active': ''} button`} type="button" aria-label="Нравится" title="Нравится"></button>
+        <button className={`place__like ${isLiked? 'place__like_active': ''} button`} onClick={handleLikeClick} type="button" aria-label="Нравится" title="Нравится"></button>
         <p className="place__like-counter">{card.likes.length}</p>
       </div>
     </li>

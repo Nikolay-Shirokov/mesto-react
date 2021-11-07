@@ -1,6 +1,6 @@
 import api from "../utils/api";
 import { handleError } from "../utils/utils";
-import {useState, useEffect, useContext} from "react";
+import { useState, useEffect, useContext } from "react";
 
 import Card from "./Card";
 
@@ -26,6 +26,13 @@ function Main(props) {
 
   }, []);
 
+  function handleCardLike(card, isLiked) {
+    // Отправляем запрос в API и получаем обновлённые данные карточки
+    api.setStateLike(card._id, isLiked).then((newCard) => {
+      setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+    });
+  }
+
   return (
     <main className="root__content">
       <section className="profile root__profile">
@@ -41,7 +48,7 @@ function Main(props) {
       </section>
       <section className="root__places">
         <ul className="places">
-          {cards.map(card => <Card key={card._id} onCardClick={props.onCardClick} {...card} />)}
+          {cards.map(card => <Card key={card._id} onCardClick={props.onCardClick} onCardLike={handleCardLike} {...card} />)}
         </ul>
       </section>
     </main>
