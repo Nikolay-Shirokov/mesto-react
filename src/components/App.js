@@ -12,6 +12,7 @@ import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
+import AddPlacePopup from "./AddPlacePopup";
 
 function App() {
 
@@ -141,25 +142,9 @@ function App() {
           onUpdateUser={handleUpdateUser}
         />
 
-        <PopupWithForm
-          title="Новое место"
-          name="add-place"
+        <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
-          fieldset={(
-            <fieldset className="form__fields">
-              <label className="form__field">
-                <input className="form__input" type="text" name="name" placeholder="Название" required minLength="2" maxLength="30" />
-                <span className="form__input-error" data-input-name="name"></span>
-              </label>
-              <label className="form__field">
-                <input className="form__input" type="url" name="link" placeholder="Ссылка на картинку" required />
-                <span className="form__input-error" data-input-name="link"></span>
-              </label>
-            </fieldset>
-          )}
-          buttonText="Создать"
-          buttonWaitingText="Создание..."
         />
 
         <EditAvatarPopup
