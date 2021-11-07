@@ -1,32 +1,21 @@
 import api from "../utils/api";
 import { handleError } from "../utils/utils";
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 
 import Card from "./Card";
 
-import initialUserAvatar from "../images/avatar.webp";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Main(props) {
 
   //Данные профиля
-  const [userName, setUserName] = useState('Инкогнито');
-  const [userDescription, setUserDescription] = useState('Неизвестный посетитель');
-  const [userAvatar, setUserAvatar] = useState(initialUserAvatar);
+  const userInfo = useContext(CurrentUserContext)
 
   //Карточки
   const [cards, setCards] = useState([]);
 
   //Разовые действия при монтированнии/демонтировании компонента
   useEffect(() => {
-
-    // Загрузка данных профиля с сервера
-    api.getUserInfo()
-      .then(data => {
-        setUserName(data.name);
-        setUserDescription(data.about);
-        setUserAvatar(data.avatar);
-      })
-      .catch(handleError);
 
     // Загрузка коллекции карточек с сервера
     api.getInitialCards()
@@ -41,12 +30,12 @@ function Main(props) {
     <main className="root__content">
       <section className="profile root__profile">
         <div className="profile__avatar-container" onClick={props.onEditAvatar}>
-          <img className="profile__avatar" src={userAvatar} alt="Аватар нашего героя" />
+          <img className="profile__avatar" src={userInfo.avatar} alt="Аватар нашего героя" />
         </div>
         <div className="profile__info">
-          <h1 className="profile__name">{userName}</h1>
+          <h1 className="profile__name">{userInfo.name}</h1>
           <button className="profile__edit button" type="button" aria-label="Редактировать профиль" onClick={props.onEditProfile}></button>
-          <p className="profile__position">{userDescription}</p>
+          <p className="profile__position">{userInfo.about}</p>
         </div>
         <button className="profile__add-place button" type="button" aria-label="Добавить карточку места" onClick={props.onAddPlace}></button>
       </section>
