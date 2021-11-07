@@ -6,7 +6,10 @@ function Card(card) {
   //Данные профиля
   const currentUser = useContext(CurrentUserContext);
 
-  const isOwn = card.owner._id === currentUser._id;
+  // Определяем, являемся ли мы владельцем текущей карточки
+  const isOwn = (card.owner._id === currentUser._id);
+  // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
+  const isLiked = card.likes.some(user => user._id === currentUser._id);
 
   function handleClick() {
     card.onCardClick(card);
@@ -18,7 +21,7 @@ function Card(card) {
       <h2 className="place__caption">{card.name}</h2>
       {isOwn? <button className="place__delete button" type="button" aria-label="Удалить" title="Удалить"></button>: ''}
       <div className="place__like-container">
-        <button className="place__like button" type="button" aria-label="Нравится" title="Нравится"></button>
+        <button className={`place__like ${isLiked? 'place__like_active': ''} button`} type="button" aria-label="Нравится" title="Нравится"></button>
         <p className="place__like-counter">{card.likes.length}</p>
       </div>
     </li>
