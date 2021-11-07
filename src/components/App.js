@@ -38,11 +38,11 @@ function App() {
   }
 
   function handleEditProfileClick() {
-    setAddPlacePopupOpen(true);
+    setEditProfilePopupOpen(true);
   }
 
   function handleAddPlaceClick() {
-    setEditProfilePopupOpen(true);
+    setAddPlacePopupOpen(true);
   }
 
   function closeAllPopups(event) {

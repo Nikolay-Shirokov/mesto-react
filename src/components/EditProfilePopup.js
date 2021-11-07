@@ -1,10 +1,21 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import PopupWithForm from "./PopupWithForm";
 
 function EditProfilePopup(props) {
 
-  const [name, setName] = useState();
-  const [about, setAbout] = useState();
+  const [name, setName] = useState('');
+  const [about, setAbout] = useState('');
+
+  const currentUser = useContext(CurrentUserContext);
+  // После загрузки текущего пользователя из API
+  // его данные будут использованы в управляемых компонентах.
+  useEffect(() => {
+    if (currentUser.name) {
+      setName(currentUser.name);
+      setAbout(currentUser.about);
+    }
+  }, [currentUser]);
 
   function handleNameChange(event) {
     setName(event.target.value);
@@ -18,8 +29,8 @@ function EditProfilePopup(props) {
     <PopupWithForm
       title="Редактировать профиль"
       name="edit-profile"
-      isOpen={props.isEditProfilePopupOpen}
-      onClose={props.closeAllPopups}
+      isOpen={props.isOpen}
+      onClose={props.onClose}
       fieldset={(
         <fieldset className="form__fields">
           <label className="form__field">
