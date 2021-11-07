@@ -14,8 +14,7 @@ function AddPlacePopup(props) {
     setLink(event.target.value);
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  function handleSubmit() {
     const result = props.onAddCard({
       name,
       link,

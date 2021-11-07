@@ -25,8 +25,7 @@ function EditProfilePopup(props) {
     setAbout(event.target.value);
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  function handleSubmit() {
     // Передаём значения управляемых компонентов во внешний обработчик
     const result = props.onUpdateUser({
       name,
