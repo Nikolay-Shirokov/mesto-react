@@ -9,7 +9,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 function Main(props) {
 
   //Данные профиля
-  const userInfo = useContext(CurrentUserContext)
+  const currentUser = useContext(CurrentUserContext);
 
   //Карточки
   const [cards, setCards] = useState([]);
@@ -30,12 +30,12 @@ function Main(props) {
     <main className="root__content">
       <section className="profile root__profile">
         <div className="profile__avatar-container" onClick={props.onEditAvatar}>
-          <img className="profile__avatar" src={userInfo.avatar} alt="Аватар нашего героя" />
+          <img className="profile__avatar" src={currentUser.avatar} alt="Аватар нашего героя" />
         </div>
         <div className="profile__info">
-          <h1 className="profile__name">{userInfo.name}</h1>
+          <h1 className="profile__name">{currentUser.name}</h1>
           <button className="profile__edit button" type="button" aria-label="Редактировать профиль" onClick={props.onEditProfile}></button>
-          <p className="profile__position">{userInfo.about}</p>
+          <p className="profile__position">{currentUser.about}</p>
         </div>
         <button className="profile__add-place button" type="button" aria-label="Добавить карточку места" onClick={props.onAddPlace}></button>
       </section>
