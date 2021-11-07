@@ -10,6 +10,7 @@ import { handleError } from "../utils/utils";
 import api from "../utils/api";
 
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import EditProfilePopup from "./EditProfilePopup";
 
 function App() {
 
@@ -79,25 +80,9 @@ function App() {
 
         <Footer />
 
-        <PopupWithForm
-          title="Редактировать профиль"
-          name="edit-profile"
+        <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
-          fieldset={(
-            <fieldset className="form__fields">
-              <label className="form__field">
-                <input className="form__input" type="text" name="name" placeholder="Имя героя" required minLength="2" maxLength="40" />
-                <span className="form__input-error" data-input-name="name"></span>
-              </label>
-              <label className="form__field">
-                <input className="form__input" type="text" name="about" placeholder="Позиция героя в мире" required minLength="2" maxLength="200" />
-                <span className="form__input-error" data-input-name="about"></span>
-              </label>
-            </fieldset>
-          )}
-          buttonText="Сохранить"
-          buttonWaitingText="Сохранение..."
         />
 
         <PopupWithForm
