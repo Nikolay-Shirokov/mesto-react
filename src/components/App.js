@@ -64,6 +64,15 @@ function App() {
     setImagePopupOpen(true);
   }
 
+  function handleUpdateUser(newUserInfo) {
+    api.patchUserInfo(newUserInfo)
+      .then(res => {
+        setCurrentUser(res);
+        setEditProfilePopupOpen(false);
+      })
+      .catch(handleError)
+  }
+
   return (
     <div className="wrapper">
 
@@ -83,6 +92,7 @@ function App() {
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
+          onUpdateUser={handleUpdateUser}
         />
 
         <PopupWithForm

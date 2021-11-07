@@ -25,12 +25,22 @@ function EditProfilePopup(props) {
     setAbout(event.target.value);
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    // Передаём значения управляемых компонентов во внешний обработчик
+    props.onUpdateUser({
+      name,
+      about,
+    });
+  }
+
   return (
     <PopupWithForm
       title="Редактировать профиль"
       name="edit-profile"
       isOpen={props.isOpen}
       onClose={props.onClose}
+      onSubmit={handleSubmit}
       fieldset={(
         <fieldset className="form__fields">
           <label className="form__field">
