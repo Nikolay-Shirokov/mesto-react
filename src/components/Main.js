@@ -35,6 +35,15 @@ function Main(props) {
       .catch(handleError);
   }
 
+  function handleCardDelete(card) {
+
+    api.deleteCard(card._id)
+      .then(() => {
+        setCards((state) => state.filter((c) => c._id !== card._id));
+      })
+      .catch(handleError);
+  }
+
   return (
     <main className="root__content">
       <section className="profile root__profile">
@@ -50,7 +59,15 @@ function Main(props) {
       </section>
       <section className="root__places">
         <ul className="places">
-          {cards.map(card => <Card key={card._id} onCardClick={props.onCardClick} onCardLike={handleCardLike} {...card} />)}
+          {cards.map(card => (
+            <Card
+              key={card._id}
+              onCardClick={props.onCardClick}
+              onCardLike={handleCardLike}
+              onCardDelete={handleCardDelete}
+              {...card}
+            />)
+          )}
         </ul>
       </section>
     </main>
