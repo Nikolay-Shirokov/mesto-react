@@ -13,7 +13,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
-import { Route, Routes } from "react-router-dom";
+/* import { Route, Routes } from "react-router-dom"; */
 
 function App() {
 
