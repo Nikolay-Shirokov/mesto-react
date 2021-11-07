@@ -16,10 +16,13 @@ function AddPlacePopup(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    props.onAddCard({
+    const result = props.onAddCard({
       name,
       link,
     });
+    setName('');
+    setLink('');
+    return result;
   }
 
   return (

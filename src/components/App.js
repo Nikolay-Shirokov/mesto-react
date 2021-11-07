@@ -67,7 +67,7 @@ function App() {
   }
 
   function handleUpdateUser(newUserInfo) {
-    api.patchUserInfo(newUserInfo)
+    return api.patchUserInfo(newUserInfo)
       .then(res => {
         setCurrentUser(res);
         setEditProfilePopupOpen(false);
@@ -76,12 +76,12 @@ function App() {
   }
 
   function handleUpdateAvatar(newLink) {
-    api.patchAvatar(newLink)
-    .then(res => {
-      setCurrentUser(res);
-      setEditAvatarPopupOpen(false);
-    })
-    .catch(handleError)
+    return api.patchAvatar(newLink)
+      .then(res => {
+        setCurrentUser(res);
+        setEditAvatarPopupOpen(false);
+      })
+      .catch(handleError)
   }
 
   //Карточки
@@ -118,12 +118,12 @@ function App() {
   }
 
   function handleAddCard(newCardData) {
-    api.postCard(newCardData)
-    .then(newCard => {
-      setCards([newCard, ...cards]);
-      setAddPlacePopupOpen(false);
-    })
-    .catch(handleError)
+    return api.postCard(newCardData)
+      .then(newCard => {
+        setCards([newCard, ...cards]);
+        setAddPlacePopupOpen(false);
+      })
+      .catch(handleError)
   }
 
   return (
