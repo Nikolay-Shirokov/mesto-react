@@ -83,6 +83,39 @@ function App() {
     .catch(handleError)
   }
 
+  //Карточки
+  const [cards, setCards] = useState([]);
+
+  //Разовые действия при монтированнии/демонтировании компонента
+  useEffect(() => {
+
+    // Загрузка коллекции карточек с сервера
+    api.getInitialCards()
+      .then(data => {
+        setCards(data);
+      })
+      .catch(handleError);
+
+  }, []);
+
+  function handleCardLike(card, isLiked) {
+    // Отправляем запрос в API и получаем обновлённые данные карточки
+    api.setStateLike(card._id, isLiked)
+      .then((newCard) => {
+        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+      })
+      .catch(handleError);
+  }
+
+  function handleCardDelete(card) {
+
+    api.deleteCard(card._id)
+      .then(() => {
+        setCards((state) => state.filter((c) => c._id !== card._id));
+      })
+      .catch(handleError);
+  }
+
   return (
     <div className="wrapper">
 
@@ -94,7 +127,10 @@ function App() {
           onEditAvatar={handleEditAvatarClick}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
+          cards={cards}
           onCardClick={handleCardClick}
+          onCardLike={handleCardLike}
+          onCardDelete={handleCardDelete}
         />
 
         <Footer />
