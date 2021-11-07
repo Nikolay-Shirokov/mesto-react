@@ -28,9 +28,11 @@ function Main(props) {
 
   function handleCardLike(card, isLiked) {
     // Отправляем запрос в API и получаем обновлённые данные карточки
-    api.setStateLike(card._id, isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-    });
+    api.setStateLike(card._id, isLiked)
+      .then((newCard) => {
+        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+      })
+      .catch(handleError);
   }
 
   return (
