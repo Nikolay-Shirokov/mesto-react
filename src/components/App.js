@@ -21,6 +21,7 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
   const [isImagePopupOpen, setImagePopupOpen] = useState(false);
+  const [isCardDeleteConfirmPopupOpen, setCardDeleteConfirmPopupOpen] = useState(false);
 
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
@@ -59,6 +60,8 @@ function App() {
     setEditProfilePopupOpen(false);
 
     setImagePopupOpen(false);
+
+    setCardDeleteConfirmPopupOpen(false);
 
   }
 
@@ -109,9 +112,14 @@ function App() {
       .catch(handleError);
   }
 
+  function handleCardDeleteClick(card) {
+    setSelectedCard(card);
+    setCardDeleteConfirmPopupOpen(true);
+  }
+
   function handleCardDelete(card) {
 
-    api.deleteCard(card._id)
+    return api.deleteCard(card._id)
       .then(() => {
         setCards((state) => state.filter((c) => c._id !== card._id));
       })
@@ -125,6 +133,12 @@ function App() {
         setAddPlacePopupOpen(false);
       })
       .catch(handleError)
+  }
+
+  const onConfirmDelete = () => {
+    const result = handleCardDelete(selectedCard);
+    result.finally(res => setCardDeleteConfirmPopupOpen(false));
+    return result;
   }
 
   return (
@@ -143,7 +157,7 @@ function App() {
               cards={cards}
               onCardClick={handleCardClick}
               onCardLike={handleCardLike}
-              onCardDelete={handleCardDelete}
+              onCardDelete={handleCardDeleteClick}
             />
 
             <Footer />
@@ -167,9 +181,13 @@ function App() {
             />
 
             <PopupWithForm
+              isOpen={isCardDeleteConfirmPopupOpen}
+              onClose={closeAllPopups}
+              onSubmit={onConfirmDelete}
               title="Вы уверены?"
               name="accept"
               buttonText="Да"
+              buttonWaitingText="Удаление..."
             />
 
             <ImagePopup
