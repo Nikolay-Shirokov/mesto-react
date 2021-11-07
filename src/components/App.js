@@ -117,6 +117,15 @@ function App() {
       .catch(handleError);
   }
 
+  function handleAddCard(newCardData) {
+    api.postCard(newCardData)
+    .then(newCard => {
+      setCards([newCard, ...cards]);
+      setAddPlacePopupOpen(false);
+    })
+    .catch(handleError)
+  }
+
   return (
     <div className="wrapper">
 
@@ -145,6 +154,7 @@ function App() {
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
+          onAddCard={handleAddCard}
         />
 
         <EditAvatarPopup
