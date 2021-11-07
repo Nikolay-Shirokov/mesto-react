@@ -13,7 +13,8 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
-
+/* import { Route, Routes } from "react-router-dom";
+ */
 function App() {
 
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
@@ -130,51 +131,55 @@ function App() {
     <div className="wrapper">
 
       <CurrentUserContext.Provider value={currentUser}>
+{/*         <Routes>
+          <Route exact path="/"> */}
 
-        <Header />
+            <Header />
 
-        <Main
-          onEditAvatar={handleEditAvatarClick}
-          onEditProfile={handleEditProfileClick}
-          onAddPlace={handleAddPlaceClick}
-          cards={cards}
-          onCardClick={handleCardClick}
-          onCardLike={handleCardLike}
-          onCardDelete={handleCardDelete}
-        />
+            <Main
+              onEditAvatar={handleEditAvatarClick}
+              onEditProfile={handleEditProfileClick}
+              onAddPlace={handleAddPlaceClick}
+              cards={cards}
+              onCardClick={handleCardClick}
+              onCardLike={handleCardLike}
+              onCardDelete={handleCardDelete}
+            />
 
-        <Footer />
+            <Footer />
 
-        <EditProfilePopup
-          isOpen={isEditProfilePopupOpen}
-          onClose={closeAllPopups}
-          onUpdateUser={handleUpdateUser}
-        />
+            <EditProfilePopup
+              isOpen={isEditProfilePopupOpen}
+              onClose={closeAllPopups}
+              onUpdateUser={handleUpdateUser}
+            />
 
-        <AddPlacePopup
-          isOpen={isAddPlacePopupOpen}
-          onClose={closeAllPopups}
-          onAddCard={handleAddCard}
-        />
+            <AddPlacePopup
+              isOpen={isAddPlacePopupOpen}
+              onClose={closeAllPopups}
+              onAddCard={handleAddCard}
+            />
 
-        <EditAvatarPopup
-          isOpen={isEditAvatarPopupOpen}
-          onClose={closeAllPopups}
-          onUpdateAvatar={handleUpdateAvatar}
-        />
+            <EditAvatarPopup
+              isOpen={isEditAvatarPopupOpen}
+              onClose={closeAllPopups}
+              onUpdateAvatar={handleUpdateAvatar}
+            />
 
-        <PopupWithForm
-          title="Вы уверены?"
-          name="accept"
-          buttonText="Да"
-        />
+            <PopupWithForm
+              title="Вы уверены?"
+              name="accept"
+              buttonText="Да"
+            />
 
-        <ImagePopup
-          card={selectedCard}
-          isOpen={isImagePopupOpen}
-          onClose={closeAllPopups}
-        />
-
+            <ImagePopup
+              card={selectedCard}
+              isOpen={isImagePopupOpen}
+              onClose={closeAllPopups}
+            />
+{/*
+          </Route>
+        </Routes> */}
       </CurrentUserContext.Provider>
 
     </div>
