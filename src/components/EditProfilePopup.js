@@ -36,6 +36,7 @@ function EditProfilePopup(props) {
 
   return (
     <PopupWithForm
+      {...props}
       title="Редактировать профиль"
       name="edit-profile"
       isOpen={props.isOpen}

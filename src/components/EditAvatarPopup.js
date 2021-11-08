@@ -13,6 +13,7 @@ function EditAvatarPopup(props) {
 
   return (
     <PopupWithForm
+      {...props}
       title="Обновить аватар"
       name="edit-avatar"
       isOpen={props.isOpen}

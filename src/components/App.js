@@ -166,18 +166,21 @@ function App() {
               isOpen={isEditProfilePopupOpen}
               onClose={closeAllPopups}
               onUpdateUser={handleUpdateUser}
+              setOpenState={setEditProfilePopupOpen}
             />
 
             <AddPlacePopup
               isOpen={isAddPlacePopupOpen}
               onClose={closeAllPopups}
               onAddCard={handleAddCard}
+              setOpenState={setAddPlacePopupOpen}
             />
 
             <EditAvatarPopup
               isOpen={isEditAvatarPopupOpen}
               onClose={closeAllPopups}
               onUpdateAvatar={handleUpdateAvatar}
+              setOpenState={setEditAvatarPopupOpen}
             />
 
             <PopupWithForm
@@ -188,12 +191,14 @@ function App() {
               name="accept"
               buttonText="Да"
               buttonWaitingText="Удаление..."
+              setOpenState={setCardDeleteConfirmPopupOpen}
             />
 
             <ImagePopup
               card={selectedCard}
               isOpen={isImagePopupOpen}
               onClose={closeAllPopups}
+              setOpenState={setImagePopupOpen}
             />
 {/*
           </Route>
