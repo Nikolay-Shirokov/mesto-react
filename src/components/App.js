@@ -118,6 +118,7 @@ function App() {
     return api.deleteCard(card._id)
       .then(() => {
         setCards((state) => state.filter((c) => c._id !== card._id));
+        setIsCardDeleteConfirmPopupOpen(false)
       })
       .catch(handleError);
   }
@@ -129,12 +130,6 @@ function App() {
         setIsAddPlacePopupOpen(false);
       })
       .catch(handleError)
-  }
-
-  const onConfirmDelete = () => {
-    const result = handleCardDelete(selectedCard);
-    result.finally(res => setIsCardDeleteConfirmPopupOpen(false));
-    return result;
   }
 
   return (
@@ -182,7 +177,7 @@ function App() {
             <PopupWithForm
               isOpen={isCardDeleteConfirmPopupOpen}
               onClose={closeAllPopups}
-              onSubmit={onConfirmDelete}
+              onSubmit={handleCardDelete}
               title="Вы уверены?"
               name="accept"
               buttonText="Да"
