@@ -17,11 +17,11 @@ import AddPlacePopup from "./AddPlacePopup";
 
 function App() {
 
-  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
-  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
-  const [isImagePopupOpen, setImagePopupOpen] = useState(false);
-  const [isCardDeleteConfirmPopupOpen, setCardDeleteConfirmPopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const [isCardDeleteConfirmPopupOpen, setIsCardDeleteConfirmPopupOpen] = useState(false);
 
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
@@ -38,15 +38,15 @@ function App() {
   }, []);
 
   function handleEditAvatarClick() {
-    setEditAvatarPopupOpen(true);
+    setIsEditAvatarPopupOpen(true);
   }
 
   function handleEditProfileClick() {
-    setEditProfilePopupOpen(true);
+    setIsEditProfilePopupOpen(true);
   }
 
   function handleAddPlaceClick() {
-    setAddPlacePopupOpen(true);
+    setIsAddPlacePopupOpen(true);
   }
 
   function closeAllPopups(event) {
@@ -55,26 +55,26 @@ function App() {
       return;
     };
 
-    setEditAvatarPopupOpen(false);
-    setAddPlacePopupOpen(false);
-    setEditProfilePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setIsEditProfilePopupOpen(false);
 
-    setImagePopupOpen(false);
+    setIsImagePopupOpen(false);
 
-    setCardDeleteConfirmPopupOpen(false);
+    setIsCardDeleteConfirmPopupOpen(false);
 
   }
 
   function handleCardClick(card) {
     setSelectedCard(card);
-    setImagePopupOpen(true);
+    setIsImagePopupOpen(true);
   }
 
   function handleUpdateUser(newUserInfo) {
     return api.patchUserInfo(newUserInfo)
       .then(res => {
         setCurrentUser(res);
-        setEditProfilePopupOpen(false);
+        setIsEditProfilePopupOpen(false);
       })
       .catch(handleError)
   }
@@ -83,7 +83,7 @@ function App() {
     return api.patchAvatar(newLink)
       .then(res => {
         setCurrentUser(res);
-        setEditAvatarPopupOpen(false);
+        setIsEditAvatarPopupOpen(false);
       })
       .catch(handleError)
   }
@@ -114,7 +114,7 @@ function App() {
 
   function handleCardDeleteClick(card) {
     setSelectedCard(card);
-    setCardDeleteConfirmPopupOpen(true);
+    setIsCardDeleteConfirmPopupOpen(true);
   }
 
   function handleCardDelete(card) {
@@ -130,14 +130,14 @@ function App() {
     return api.postCard(newCardData)
       .then(newCard => {
         setCards([newCard, ...cards]);
-        setAddPlacePopupOpen(false);
+        setIsAddPlacePopupOpen(false);
       })
       .catch(handleError)
   }
 
   const onConfirmDelete = () => {
     const result = handleCardDelete(selectedCard);
-    result.finally(res => setCardDeleteConfirmPopupOpen(false));
+    result.finally(res => setIsCardDeleteConfirmPopupOpen(false));
     return result;
   }
 
@@ -166,21 +166,21 @@ function App() {
               isOpen={isEditProfilePopupOpen}
               onClose={closeAllPopups}
               onUpdateUser={handleUpdateUser}
-              setOpenState={setEditProfilePopupOpen}
+              setOpenState={setIsEditProfilePopupOpen}
             />
 
             <AddPlacePopup
               isOpen={isAddPlacePopupOpen}
               onClose={closeAllPopups}
               onAddCard={handleAddCard}
-              setOpenState={setAddPlacePopupOpen}
+              setOpenState={setIsAddPlacePopupOpen}
             />
 
             <EditAvatarPopup
               isOpen={isEditAvatarPopupOpen}
               onClose={closeAllPopups}
               onUpdateAvatar={handleUpdateAvatar}
-              setOpenState={setEditAvatarPopupOpen}
+              setOpenState={setIsEditAvatarPopupOpen}
             />
 
             <PopupWithForm
@@ -191,14 +191,14 @@ function App() {
               name="accept"
               buttonText="Да"
               buttonWaitingText="Удаление..."
-              setOpenState={setCardDeleteConfirmPopupOpen}
+              setOpenState={setIsCardDeleteConfirmPopupOpen}
             />
 
             <ImagePopup
               card={selectedCard}
               isOpen={isImagePopupOpen}
               onClose={closeAllPopups}
-              setOpenState={setImagePopupOpen}
+              setOpenState={setIsImagePopupOpen}
             />
 {/*
           </Route>
