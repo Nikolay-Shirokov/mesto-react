@@ -19,17 +19,16 @@ function EditAvatarPopup(props) {
       isOpen={props.isOpen}
       onClose={props.onClose}
       onSubmit={handleSubmit}
-      fieldset={(
-        <fieldset className="form__fields">
-          <label className="form__field">
-            <input ref={inputRef} className="form__input" type="url" name="link" placeholder="Ссылка на картинку" required />
-            <span className="form__input-error" data-input-name="link"></span>
-          </label>
-        </fieldset>
-      )}
       buttonText="Сохранить"
       buttonWaitingText="Сохренение..."
-    />
+    >
+      <fieldset className="form__fields">
+        <label className="form__field">
+          <input ref={inputRef} className="form__input" type="url" name="link" placeholder="Ссылка на картинку" required />
+          <span className="form__input-error" data-input-name="link"></span>
+        </label>
+      </fieldset>
+    </PopupWithForm>
   );
 }
 

@@ -42,21 +42,20 @@ function EditProfilePopup(props) {
       isOpen={props.isOpen}
       onClose={props.onClose}
       onSubmit={handleSubmit}
-      fieldset={(
-        <fieldset className="form__fields">
-          <label className="form__field">
-            <input value={name} onChange={handleNameChange} className="form__input" type="text" name="name" placeholder="Имя героя" required minLength="2" maxLength="40" />
-            <span className="form__input-error" data-input-name="name"></span>
-          </label>
-          <label className="form__field">
-            <input value={about} onChange={handleAboutChange} className="form__input" type="text" name="about" placeholder="Позиция героя в мире" required minLength="2" maxLength="200" />
-            <span className="form__input-error" data-input-name="about"></span>
-          </label>
-        </fieldset>
-      )}
       buttonText="Сохранить"
       buttonWaitingText="Сохранение..."
-    />
+    >
+      <fieldset className="form__fields">
+        <label className="form__field">
+          <input value={name} onChange={handleNameChange} className="form__input" type="text" name="name" placeholder="Имя героя" required minLength="2" maxLength="40" />
+          <span className="form__input-error" data-input-name="name"></span>
+        </label>
+        <label className="form__field">
+          <input value={about} onChange={handleAboutChange} className="form__input" type="text" name="about" placeholder="Позиция героя в мире" required minLength="2" maxLength="200" />
+          <span className="form__input-error" data-input-name="about"></span>
+        </label>
+      </fieldset>
+    </PopupWithForm>
   );
 }
 
