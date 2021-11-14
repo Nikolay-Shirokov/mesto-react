@@ -13,6 +13,7 @@ function PopupWithForm(props) {
     setButtonText(props.buttonWaitingText ? props.buttonWaitingText : props.buttonText);
     const result = props.onSubmit(event);
     if (result instanceof Promise) {
+      result.then(res => props.setOpenState(false));
       result.finally(res => setButtonText(props.buttonText));
     }
   }
