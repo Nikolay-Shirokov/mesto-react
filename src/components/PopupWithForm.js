@@ -20,7 +20,7 @@ function PopupWithForm(props) {
 
   return (
     <Popup {...props}>
-      <form className="form" action="post" name={`form-${props.name}`} onSubmit={handleSubmitForm} noValidate>
+      <form ref={props.formRef} className="form" action="post" name={`form-${props.name}`} onSubmit={handleSubmitForm} noValidate>
         <h2 className="form__title">{props.title}</h2>
         {props.children}
         <button className={`form__submit ${props.isButtonDisabled? 'form__submit_disabled': ''} button`} type="submit">{buttonText}</button>
