@@ -49,11 +49,7 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
-  function closeAllPopups(event) {
-
-    if (!(event.target === event.currentTarget || event.target.classList.contains('popup__close'))) {
-      return;
-    };
+  function closeAllPopups() {
 
     setIsEditAvatarPopupOpen(false);
     setIsAddPlacePopupOpen(false);
